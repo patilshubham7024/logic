@@ -15,11 +15,6 @@ public class ValidParentheses {
 	}
 
 	public static boolean isValid(String inputString) {
-		Map<String, String> allBracesPairs = new HashMap<>();
-		allBracesPairs.put("(", ")");
-		allBracesPairs.put("[", "]");
-		allBracesPairs.put("{", "}");
-
 		boolean isStringValid = false;
 		if (inputString.length() % 2 == 0) {
 			char[] arrayString = inputString.toCharArray();
@@ -28,12 +23,14 @@ public class ValidParentheses {
 				Stack<String> bracesStack = new Stack<>();
 				for (int i = 0; i < arrayString.length; i++) {
 					String currentChar = String.valueOf(arrayString[i]);
-					if (START_BRACES.contains(currentChar)) {
-						bracesStack.push(currentChar);
-					} else if (END_BRACES.contains(currentChar)) {
-						if (bracesStack.size() == 0 || !allBracesPairs.get(bracesStack.pop()).equals(currentChar)) {
-							return false;
-						}
+					if ("(".equals(currentChar)) {
+						bracesStack.push(")");
+					} else if ("{".equals(currentChar)) {
+						bracesStack.push("}");
+					} else if ("[".equals(currentChar)) {
+						bracesStack.push("]");
+					} else if (bracesStack.size() == 0 || !bracesStack.pop().equals(currentChar)) {
+						return false;
 					}
 				}
 				return bracesStack.size() == 0;
