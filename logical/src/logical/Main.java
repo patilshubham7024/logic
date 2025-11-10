@@ -1,11 +1,11 @@
 package logical;
 
-import logical.leet.ValidParentheses;
+import logical.gfg.Pyramid;
 
 public class Main {
 
 	public static void main(String[] args) {
-		ValidParentheses.run();
+		Pyramid.run();
 	}
 
 }
